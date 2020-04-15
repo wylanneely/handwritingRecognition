@@ -32,7 +32,7 @@ class PhotoCaptureViewController: UIViewController, UINavigationControllerDelega
     //MARK: Actions
     
     @IBAction func recognizeSymbol(_ sender: Any) {
-        let image = UIImage(view: invertedColorsImageView)
+        let image = UIImage(view: imageView)
         let scaledIMage = scaleImage(image: image, toSize: CGSize(width: 28, height: 28))
         
         self.predictorController.requestPrediction(with: scaledIMage) { (success) in
@@ -69,15 +69,17 @@ class PhotoCaptureViewController: UIViewController, UINavigationControllerDelega
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imagePicker.dismiss(animated: true, completion: nil)
         imageView.image = info[.originalImage] as? UIImage
-        invertOriginalImageColors()
+        transformImageForClassifier()
     }
     
-    func invertOriginalImageColors(){
+    
+    //classifier model trained with black backround and white text
+    func transformImageForClassifier(){
         let beginImage = CIImage(image: imageView!.image!)
                if let filter = CIFilter(name: "CIColorInvert") {
                    filter.setValue(beginImage, forKey: kCIInputImageKey)
                 let newImage = UIImage(ciImage: filter.outputImage!)
-                   invertedColorsImageView!.image = newImage
+                invertedColorsImageView!.image = newImage.rotate(radians: CGFloat(Double.pi / 2))
                }
     }
     

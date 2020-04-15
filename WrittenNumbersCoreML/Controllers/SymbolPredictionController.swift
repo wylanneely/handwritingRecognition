@@ -27,7 +27,7 @@ class NumberPredictorController {
     
     init(){
         predictionSessionUUID = UUID()
-        guard let model = try? VNCoreMLModel(for: MNIST().model) else {
+        guard let model = try? VNCoreMLModel(for: WrittenNumbersClassifier_1().model) else {
             self.visionModel = nil
             fatalError("Machine Learning Model: FAILED TO LOAD")
                }
