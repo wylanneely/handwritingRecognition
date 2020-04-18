@@ -33,9 +33,10 @@ class PhotoCaptureViewController: UIViewController, UINavigationControllerDelega
     
     @IBAction func recognizeSymbol(_ sender: Any) {
         let image = UIImage(view: imageView)
+        
         let scaledIMage = scaleImage(image: image, toSize: CGSize(width: 28, height: 28))
         
-        self.predictorController.requestPrediction(with: scaledIMage) { (success) in
+        self.predictorController.requestPrediction(with: image) { (success) in
             if success {
                 let mostConfidentSymbol = predictorController.highestConfidenceSymbol
                 DispatchQueue.main.async {
