@@ -11,30 +11,30 @@ import Vision
 import CoreML
 
 class PhotoCaptureViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+   
     
     //MARK: App Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-        
-    //MARK: Properties
     
+    //MARK: Properties
     var imagePicker: UIImagePickerController!
     
     var requests = [VNRequest]()
-    var predictorController = NumberPredictorController()
+    var predictorController = HandwrittenNumberImagesPredictorController()
     
     //MARK: Outlets
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var predictedSymbol: UILabel!
     @IBOutlet weak var invertedColorsImageView: UIImageView!
+    
     //MARK: Actions
     
     @IBAction func recognizeSymbol(_ sender: Any) {
         let image = UIImage(view: imageView)
-        
-        let scaledIMage = scaleImage(image: image, toSize: CGSize(width: 28, height: 28))
+      //  let scaledIMage = scaleImage(image: image, toSize: CGSize(width: 299, height: 299))
         
         self.predictorController.requestPrediction(with: image) { (success) in
             if success {
@@ -72,7 +72,6 @@ class PhotoCaptureViewController: UIViewController, UINavigationControllerDelega
         imageView.image = info[.originalImage] as? UIImage
         transformImageForClassifier()
     }
-    
     
     //classifier model trained with black backround and white text
     func transformImageForClassifier(){

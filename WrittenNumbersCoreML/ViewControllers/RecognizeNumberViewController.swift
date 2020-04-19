@@ -15,7 +15,7 @@ class RecognizeNumberViewController: UIViewController {
     //MARK: Properties
 
     var requests = [VNRequest]()
-    var predictorController = NumberPredictorController()
+    var predictorController = ScreenWrittenNumberPredictController()
     
     //MARK: App LifeCycle
     override func viewDidLoad() {

@@ -13,7 +13,7 @@ class ConfidanceViewController: UIViewController   {
     
     //MARK: Properties
     
-    var predictorController = NumberPredictorController()
+    var predictorController = HandwrittenNumberImagesPredictorController()
     
     //MARK: Setup
     
