@@ -22,9 +22,18 @@ class VisionViewController: ViewController {
 	override func viewDidLoad() {
 		// Set up vision request before letting ViewController set up the camera
 		// so that it exists when the first buffer is received.
+        checkButton.isEnabled = false
 		request = VNRecognizeTextRequest(completionHandler: recognizeTextHandler)
 		super.viewDidLoad()
 	}
+    
+    // MARK: - Action
+    
+    func activateButton() {
+        checkButton.isEnabled = true
+    }
+    
+    @IBOutlet weak var checkButton: UIButton!
     
 	// MARK: - Text recognition
     var wordGoal: String = "moon"
@@ -62,6 +71,7 @@ class VisionViewController: ViewController {
             print(candidate.string)
             if checkWrittenWord(candidate.string){
                 print("YAY! u spelt \(candidate.string) correctly")
+                self.activateButton()
             } else {
                 print("Noo Incorrect")
             }

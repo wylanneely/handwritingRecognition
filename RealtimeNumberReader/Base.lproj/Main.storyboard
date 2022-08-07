@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14750" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21208.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14710.3"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21191"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,12 +20,26 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dCx-30-dWq" customClass="PreviewView" customModule="RealtimeNumberReader" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" cocoaTouchSystemColor="systemBlueColor"/>
+                                <color key="tintColor" systemColor="systemBlueColor"/>
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4LZ-uG-TOw" userLabel="Cutout View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUS-rJ-jOU">
+                                        <rect key="frame" x="169.5" y="770" width="75" height="35"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                        <connections>
+                                            <segue destination="Q9E-TQ-whC" kind="show" id="tul-Y3-9Kg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="jUS-rJ-jOU" secondAttribute="bottom" constant="91" id="78D-5V-uiw"/>
+                                    <constraint firstItem="jUS-rJ-jOU" firstAttribute="centerX" secondItem="4LZ-uG-TOw" secondAttribute="centerX" id="MOT-jT-HlT"/>
+                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="KGw-xA-kxA" appends="YES" id="aNf-kt-GPt"/>
                                 </connections>
@@ -45,6 +59,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="4LZ-uG-TOw" secondAttribute="trailing" id="34r-xM-zkS"/>
@@ -58,9 +73,9 @@
                             <constraint firstItem="lCN-B8-Glk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" placeholder="YES" id="rwB-hc-dcB"/>
                             <constraint firstItem="4LZ-uG-TOw" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zr2-bi-Zte"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="checkButton" destination="jUS-rJ-jOU" id="K6W-XA-fbe"/>
                         <outlet property="cutoutView" destination="4LZ-uG-TOw" id="0SU-Bz-ue8"/>
                         <outlet property="numberView" destination="lCN-B8-Glk" id="Ndj-XM-BSV"/>
                         <outlet property="previewView" destination="dCx-30-dWq" id="2Ow-bh-HUR"/>
@@ -73,7 +88,55 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="47.826086956521742" y="20.758928571428569"/>
+            <point key="canvasLocation" x="-929" y="-680"/>
+        </scene>
+        <!--Augmented Reality View Controller-->
+        <scene sceneID="ySv-TP-ChX">
+            <objects>
+                <viewController id="Q9E-TQ-whC" customClass="AugmentedRealityViewController" customModule="RealtimeNumberReader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fr4-wj-q2g">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3B8-Yq-Fuh">
+                                <rect key="frame" x="0.0" y="44" width="414" height="798"/>
+                            </arView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1V-tg-dlw">
+                                <rect key="frame" x="169.5" y="773" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="addObject:" destination="Q9E-TQ-whC" eventType="touchUpInside" id="rg8-cr-106"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Sg6-IK-yB7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="O1V-tg-dlw" firstAttribute="centerX" secondItem="Fr4-wj-q2g" secondAttribute="centerX" id="KaI-ed-Vhu"/>
+                            <constraint firstItem="Sg6-IK-yB7" firstAttribute="bottom" secondItem="3B8-Yq-Fuh" secondAttribute="bottom" id="PeW-zV-Pln"/>
+                            <constraint firstItem="3B8-Yq-Fuh" firstAttribute="top" secondItem="Sg6-IK-yB7" secondAttribute="top" id="ika-4D-Ulp"/>
+                            <constraint firstItem="3B8-Yq-Fuh" firstAttribute="leading" secondItem="Sg6-IK-yB7" secondAttribute="leading" id="tt6-Dc-mB7"/>
+                            <constraint firstItem="Sg6-IK-yB7" firstAttribute="trailing" secondItem="3B8-Yq-Fuh" secondAttribute="trailing" id="wEv-5x-K0w"/>
+                            <constraint firstItem="Sg6-IK-yB7" firstAttribute="bottom" secondItem="O1V-tg-dlw" secondAttribute="bottom" constant="34" id="yYJ-N3-S2f"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="cLk-gO-uad"/>
+                    <connections>
+                        <outlet property="arView" destination="3B8-Yq-Fuh" id="Pdd-1Y-ami"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SEk-fp-6Eg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-110" y="-680"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
